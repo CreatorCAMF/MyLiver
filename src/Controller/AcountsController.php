@@ -21,7 +21,7 @@ class AcountsController extends AppController
     {   
         $acountRegisters = TableRegistry::get('Acounts');
         $acounts = $acountRegisters->find('acountsDBs', ['user_id' => $this->Auth->user()['id']]);
-        $this->set('bar_status', array("active","","","",""));
+        $this->set('bar_status', array("active","","","","","",""));
         $this->set('acounts', $acounts->toArray());
     }
 
@@ -29,7 +29,7 @@ class AcountsController extends AppController
     {   
         $acountRegisters = TableRegistry::get('Acounts');
         $acounts = $acountRegisters->find('acountsSites', ['user_id' => $this->Auth->user()['id']]);
-        $this->set('bar_status', array("","active","","",""));
+        $this->set('bar_status', array("","active","","","","","",""));
         $this->set('acounts', $acounts->toArray());
     }
 
@@ -50,7 +50,7 @@ class AcountsController extends AppController
         $sites = $this->Acounts->Sites->find('list');
 
         // Set tags to the view context
-        $this->set('bar_status', array("","","","","active"));
+        $this->set('bar_status', array("","","","","","","active"));
         $this->set('user_id', $this->Auth->user()['id']);
         $this->set('dbs', $dbs);
         $this->set('sites', $sites);

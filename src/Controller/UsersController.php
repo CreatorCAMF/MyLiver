@@ -25,14 +25,14 @@ class UsersController extends AppController
                 $this->Auth->setUser($user);
                 return $this->redirect('/main');
             }
-            $this->Flash->error('Your username or password is incorrect.');
+            $this->Flash->error('Usuario o contraseña incorrecto.');
         }
     }
 
     public function main()
     {
         $this->viewBuilder()->setLayout('menu');
-        $this->set('bar_status', array("","","","",""));
+        $this->set('bar_status', array("","","","","","",""));
         $this->set(['user' => $this->Auth->user()['user']]);
     }
 

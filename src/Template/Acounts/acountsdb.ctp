@@ -1,16 +1,16 @@
 <!-- File: src/Template/Acounts/index.ctp -->
 
-<h3 class="text-center text-capitalize font-weight-bold border-bottom text-primary mt-3">Acounts DB</h3>
+<h3 class="text-center  font-weight-bold border-bottom text-primary mt-3">Cuentas de DB</h3>
 
 <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
   <div class="btn-group mr-2" role="group" aria-label="First group">
-    <?= $this->Html->link('Add Acount', array('action' => 'add'),array('class' => 'btn btn-secondary')) ?>
+    <?= $this->Html->link('Añadir cuenta de DB', array('action' => 'add'),array('class' => 'btn btn-secondary')) ?>
   </div>
   <div class="input-group">
     <div class="input-group-prepend">
-      <div class="input-group-text" id="btnGroupAddon">Buscar...</div>
+      <div class="input-group-text" id="btnGroupAddon">Buscar</div>
     </div>
-    <input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon">
+    <input type="text" class="form-control" placeholder="..." aria-label="Buscar" aria-describedby="btnGroupAddon">
   </div>
 </div>
 
@@ -36,11 +36,11 @@
                 </p>
                 <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <?= $this->Html->link('Edit', ['action' => 'edit', $acount->id],array('class' => 'btn btn-secondary')) ?>
+                        <?= $this->Html->link('Editar', ['action' => 'edit', $acount->id],array('class' => 'btn btn-secondary')) ?>
                         <?= $this->Form->postLink(
-                        'Delete',
+                        'Borrar',
                         ['action' => 'delete', $acount->id],array('class' => 'btn btn-secondary'),
-                        ['confirm' => 'Are you sure?'])
+                        ['confirm' => '¿Estas seguro?'])
                         ?>
                     </div>
                 </div>

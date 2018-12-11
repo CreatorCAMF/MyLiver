@@ -9,7 +9,8 @@ class DbsController extends AppController
     public function index()
     {
         $this->loadComponent('Paginator');
-        $dbs = $this->Paginator->paginate($this->Dbs->find());
+        $dbs = $this->Paginator->paginate($this->Dbs->find('dbs'));
+        $this->set('bar_status', array("","","active","","","",""));
         $this->set(compact('dbs'));
     }
 
@@ -25,7 +26,7 @@ class DbsController extends AppController
             }
             $this->Flash->error(__('Unable to add your db.'));
         }
-        $this->set('bar_status', array("","","active","",""));
+        $this->set('bar_status', array("","","","","active","",""));
         $this->set('db', $db);
     }
 

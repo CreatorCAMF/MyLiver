@@ -64,15 +64,21 @@ $Description = 'My Liver';
                 <?= $this->Html->link('Cuentas DB','/menu/cuentasdb',['class' => 'nav-link']); ?>
             </li>
             <li class="nav-item <?= $bar_status[1]?>">
-                <?= $this->Html->link('Cuentas Sites','/menu/cuentassites',['class' => 'nav-link']); ?>
+                <?= $this->Html->link('Cuentas Sitios','/menu/cuentassites',['class' => 'nav-link']); ?>
             </li>
             <li class="nav-item <?= $bar_status[2]?>">
-                <?= $this->Html->link('Añadir DB','/menu/adddb',['class' => 'nav-link']); ?>
+                <?= $this->Html->link('Bases de datos','/menu/dbs',['class' => 'nav-link']); ?>
             </li>
             <li class="nav-item <?= $bar_status[3]?>">
-                <?= $this->Html->link('Añadir Site','/menu/addsite',['class' => 'nav-link']); ?>
+                <?= $this->Html->link('Sitios','/menu/sites',['class' => 'nav-link']); ?>
             </li>
             <li class="nav-item <?= $bar_status[4]?>">
+                <?= $this->Html->link('Añadir DB','/menu/adddb',['class' => 'nav-link']); ?>
+            </li>
+            <li class="nav-item <?= $bar_status[5]?>">
+                <?= $this->Html->link('Añadir Sitio','/menu/addsite',['class' => 'nav-link']); ?>
+            </li>
+            <li class="nav-item <?= $bar_status[6]?>">
                 <?= $this->Html->link('Añadir Cuenta','/menu/addacount',['class' => 'nav-link']); ?>
             </li>
             <li class="nav-item">

@@ -79,6 +79,8 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->connect('/menu/cuentasdb', ['controller' => 'Acounts', 'action' => 'acountsdb']);
     $routes->connect('/menu/cuentassites', ['controller' => 'Acounts', 'action' => 'acountssites']);
+    $routes->connect('/menu/sites', ['controller' => 'Sites', 'action' => 'index']);
+    $routes->connect('/menu/dbs', ['controller' => 'Dbs', 'action' => 'index']);
     $routes->connect('/menu/adddb', ['controller' => 'Dbs', 'action' => 'add']);
     $routes->connect('/menu/addsite', ['controller' => 'Sites', 'action' => 'add']);
     $routes->connect('/menu/addacount', ['controller' => 'Acounts', 'action' => 'add']);

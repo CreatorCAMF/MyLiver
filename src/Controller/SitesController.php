@@ -7,23 +7,25 @@ class SitesController extends AppController
     public function index()
     {
         $this->loadComponent('Paginator');
-        $sites = $this->Paginator->paginate($this->Sites->find());
+        $sites = $this->Paginator->paginate($this->Sites->find('sites'));
+        $this->set('bar_status', array("","","","active","","",""));
         $this->set(compact('sites'));
     }
 
     public function add()
     {
         $site = $this->Sites->newEntity();
+        $this->set('data', $this->request->getData());
         if ($this->request->is('post')) {
             $site = $this->Sites->patchEntity($site, $this->request->getData());
-
+            $this->set('site', $site);
             if ($this->Sites->save($site)) {
                 $this->Flash->success(__('Your site has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect('/menu/cuentassites');
             }
             $this->Flash->error(__('Unable to add your site.'));
         }
-        $this->set('bar_status', array("","","","active",""));
+        $this->set('bar_status', array("","","","","","active",""));
         $this->set('site', $site);
     }
 
@@ -38,7 +40,7 @@ class SitesController extends AppController
             }
             $this->Flash->error(__('Unable to update your site.'));
         }
-
+        $this->set('bar_status', array("","","","","active",""));
         $this->set('site', $site);
     }
 
