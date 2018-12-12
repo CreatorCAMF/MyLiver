@@ -1,34 +1,35 @@
 <!-- File: src/Template/Users/index.ctp -->
 
-<h1>Users</h1>
-<?= $this->Html->link('Add User', ['action' => 'add']) ?>
-<table>
+
+<h3 class="text-center text-capitalize font-weight-bold border-bottom text-primary mt-3">Usuarios</h3>
+
+<table class="table">
+  <thead class="thead-dark">
     <tr>
-        <th>User</th>
-        <th>Created</th>
-        <th>Action</th>
+      <th scope="col">#</th>
+      <th scope="col">Usuario</th>
+      <th scope="col">Rol</th>
+      <th scope="col">Acción</th>
     </tr>
+  </thead>
+  <tbody>
 
     <!-- Here is where we iterate through our $articles query object, printing out article info -->
 
     <?php foreach ($users as $user): ?>
     <tr>
-        <td>
-            <?= $this->Html->link($user->user, ['action' => 'view', $user->password]) ?>
-        </td>
-        <td>
-            <?= $user->password ?>
-        </td>
-        <td>
-            <?= $this->Html->link('Edit', ['action' => 'edit', $user->id]) ?>
+      <th><?= $user->id ?></th>
+      <td><?= $user->user ?></td>
+      <td><?= $user->role?></td>
+      <td> <?= $this->Html->link('Editar', ['action' => 'edit', $user->id]) ?>
             <?= $this->Form->postLink(
-                'Delete',
+                'Borrar',
                 ['action' => 'delete', $user->id],
-                ['confirm' => 'Are you sure?'])
-            ?>
-        </td>       
+                ['confirm' => '¿Estas seguro?'])
+            ?></td>
     </tr>
     <?php endforeach; ?>
+    </tbody>
 </table>
 
 

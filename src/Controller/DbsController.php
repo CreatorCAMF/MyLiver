@@ -6,6 +6,16 @@ namespace App\Controller;
 class DbsController extends AppController
 {
 
+    public function isAuthorized($user)
+    {
+        $action = $this->request->getParam('action');
+        // The add and tags actions are always allowed to logged in users.
+        if (in_array($action, ['index','add','edit','delete'])) {
+            return true;
+        }
+        return 'Admin' == $user['role'];
+    }
+
     public function index()
     {
         $this->loadComponent('Paginator');

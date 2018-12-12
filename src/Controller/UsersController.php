@@ -11,6 +11,16 @@ class UsersController extends AppController
         $this->Auth->allow(['logout']);
     }
 
+    public function isAuthorized($user)
+    {
+        $action = $this->request->getParam('action');
+        // The add and tags actions are always allowed to logged in users.
+        if (in_array($action, ['main'])) {
+            return true;
+        }
+        return 'Admin' == $user['role'];
+    }
+
     public function logout()
     {
         return $this->redirect($this->Auth->logout());
@@ -48,6 +58,7 @@ class UsersController extends AppController
     {
         $this->loadComponent('Paginator');
         $users = $this->Paginator->paginate($this->Users->find());
+        $this->set('bar_status', array("","","","","","",""));
         $this->set(compact('users'));
     }
 
@@ -63,6 +74,7 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('Unable to add your user.'));
         }
+        $this->set('bar_status', array("","","","","","",""));
         $this->set('user', $user);
     }
 
@@ -77,7 +89,7 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('Unable to update your user.'));
         }
-
+        $this->set('bar_status', array("","","","","","",""));
         $this->set('user', $user);
     }
 

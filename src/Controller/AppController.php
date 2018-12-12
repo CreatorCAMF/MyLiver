@@ -54,6 +54,7 @@ class AppController extends Controller
 
 
         $this->loadComponent('Auth', [
+            'authorize'=> 'Controller',
             'authenticate' => [
                 'Form' => [
                     'fields' => [
@@ -66,10 +67,8 @@ class AppController extends Controller
                 'controller' => 'Users',
                 'action' => 'login'
             ],
-             //use isAuthorized in Controllers
-             //'authorize' => ['Controller'],
              // If unauthorized, return them to page they were just on
-             //'unauthorizedRedirect' => $this->referer()
+             'unauthorizedRedirect' => $this->referer()
         ]);
 
         // Allow the display action so our PagesController
@@ -78,5 +77,11 @@ class AppController extends Controller
         $this->viewBuilder()->setLayout('menu');
 
 
+    }
+
+    public function isAuthorized($user)
+    {
+        // By default deny access.
+        return false;
     }
 }
