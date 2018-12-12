@@ -18,6 +18,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
+use Cake\Core\Plugin;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
@@ -45,24 +46,45 @@ use Cake\Routing\Route\DashedRoute;
  */
 Router::defaultRouteClass(DashedRoute::class);
 
+Router::scope('/menu',['controller' => 'Users'],
+    function ($routes) {
+        $routes->connect('/*', ['action' => 'menu']);
+    }
+);
+
+Router::scope('/menu/cuentasdb/*', function (RouteBuilder $routes) {
+        $routes->connect('/*', ['action' => 'acountsdb']);
+
+});
+
+Router::scope('/menu/cuentassites/*', function (RouteBuilder $routes) {
+    $routes->connect('/*', ['action' => 'acountssites']);
+
+});
+
 Router::scope('/', function (RouteBuilder $routes) {
-    // Register scoped middleware for in scopes.
-    $routes->registerMiddleware('csrf', new CsrfProtectionMiddleware([
-        'httpOnly' => true
-    ]));
-
-    /**
-     * Apply a middleware to the current route scope.
-     * Requires middleware to be registered via `Application::routes()` with `registerMiddleware()`
-     */
-    $routes->applyMiddleware('csrf');
-
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
-    $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+    //$routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+
+    $routes->connect('/', ['controller' => 'Users', 'action' => 'login', 'liverHome']);
+
+    $routes->connect('/menu', ['controller' => 'Users', 'action' => 'menu']);
+
+    $routes->connect('/main', ['controller' => 'Users', 'action' => 'main']);
+
+
+    $routes->connect('/menu/cuentasdb', ['controller' => 'Acounts', 'action' => 'acountsdb']);
+    $routes->connect('/menu/cuentassites', ['controller' => 'Acounts', 'action' => 'acountssites']);
+    $routes->connect('/menu/sites', ['controller' => 'Sites', 'action' => 'index']);
+    $routes->connect('/menu/dbs', ['controller' => 'Dbs', 'action' => 'index']);
+    $routes->connect('/menu/adddb', ['controller' => 'Dbs', 'action' => 'add']);
+    $routes->connect('/menu/addsite', ['controller' => 'Sites', 'action' => 'add']);
+    $routes->connect('/menu/addacount', ['controller' => 'Acounts', 'action' => 'add']);
+    $routes->connect('/menu/logout', ['controller' => 'Users', 'action' => 'logout']);
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
@@ -73,11 +95,8 @@ Router::scope('/', function (RouteBuilder $routes) {
      * Connect catchall routes for all controllers.
      *
      * Using the argument `DashedRoute`, the `fallbacks` method is a shortcut for
-     *
-     * ```
-     * $routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'DashedRoute']);
-     * $routes->connect('/:controller/:action/*', [], ['routeClass' => 'DashedRoute']);
-     * ```
+     *    `$routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'DashedRoute']);`
+     *    `$routes->connect('/:controller/:action/*', [], ['routeClass' => 'DashedRoute']);`
      *
      * Any route class can be used with this method, such as:
      * - DashedRoute
